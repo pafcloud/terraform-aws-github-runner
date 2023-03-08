@@ -139,3 +139,9 @@ resource "aws_lambda_permission" "pool" {
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.pool[count.index].arn
 }
+
+resource "aws_iam_role_policy_attachment" "ami_id_ssm_parameter_read" {
+  count      = var.config.ami_id_ssm_parameter_name != null ? 1 : 0
+  role       = aws_iam_role.pool.name
+  policy_arn = var.config.ami_id_ssm_parameter_read_policy_arn
+}
