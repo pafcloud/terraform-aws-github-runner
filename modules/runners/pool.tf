@@ -45,9 +45,10 @@ module "pool" {
       pool_owner                = var.pool_runner_owner
       role                      = aws_iam_role.runner
     }
-    subnet_ids     = var.subnet_ids
-    ssm_token_path = "${var.ssm_paths.root}/${var.ssm_paths.tokens}"
-    tags           = local.tags
+    subnet_ids                = var.subnet_ids
+    ssm_token_path            = "${var.ssm_paths.root}/${var.ssm_paths.tokens}"
+    ami_id_ssm_parameter_name = var.ami_id_ssm_parameter_name
+    tags                      = local.tags
   }
 
   aws_partition = var.aws_partition
